@@ -1,0 +1,61 @@
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="px-md-5 px-3 pt-md-4 pt-3">
+      <h1 class="text-primary fw-bold">Register</h1>
+    </div>
+
+    <div class="card-body px-md-5 px-3 py-md-4 py-3">
+      <form autocomplete="off" (ngSubmit)="register()" #registerForm="ngForm">
+        <div class="col-md w-full">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              name="username"
+              [(ngModel)]="model.username"
+            />
+            <label for="" class="fw-medium">Username</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md w-full">
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="model.password"
+              />
+              <label for="password" class="fw-medium">Password</label>
+            </div>
+          </div>
+          <div class="col-md w-full">
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Confirm Password"
+                name="confirm-password"
+              />
+              <label for="" class="fw-medium">Confirm Password</label>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary btn-lg text-white w-100 mt-3 mt-md-4 fw-medium fs-6"
+        >
+          Sign Up
+        </button>
+        <div class="d-flex justify-content-center mt-3 mt-md-4">
+          <h4 class="create-new-account text-dark">
+            Already have an account ?<a href=""> Sign in.</a>
+          </h4>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

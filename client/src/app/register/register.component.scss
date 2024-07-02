@@ -1,0 +1,26 @@
+@import "../../theme.scss";
+
+
+.card{
+    width: 100%;
+    padding: 1em 0em;
+    border: none;
+    box-shadow: none;
+    background-color: $white;
+}
+.create-new-account{
+    font-size: 0.8rem;
+}
+
+
+@media (min-width: 992px) {
+    .card{
+        width: 50%;
+        box-shadow: 0 0 0.2rem 0.1rem rgba(56, 54, 137, 0.25);
+        padding: 2.5em 0em;
+
+    }
+    .create-new-account{
+        font-size: 1rem;
+    }
+}

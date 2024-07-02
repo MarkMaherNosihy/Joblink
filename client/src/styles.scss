@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import './bootstrap.css';
+
+
+
+.nav-100vh{
+    height: calc(100vh - 80px);
+}
+
+a{
+    text-decoration: none !important;
+}
+
+
+.pointer{
+    cursor: pointer;
+}

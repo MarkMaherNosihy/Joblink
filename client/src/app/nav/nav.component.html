@@ -1,0 +1,77 @@
+<nav class="navbar fixed-top navbar-expand-md bg-primary">
+  <div class="container">
+    <div class="align-items-center d-flex gap-4">
+      <a class="navbar-brand text-white fs-4 fw-bold" href="#">Joblink</a>
+      <a class="text-white fs-6 fw-medium"> Browse jobs</a>
+    </div>
+
+    <ul class="navbar-nav d-flex gap-4 mb-2 mb-md-0">
+      @if (!authService.currentUser()) {
+      <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
+        <fa-icon [icon]="registerIcon" size="lg" class="text-white"></fa-icon>
+        <a  class="text-white fw-medium fs-6">Register</a>
+      </li>
+      <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
+        <fa-icon [icon]="loginIcon" size="lg" class="text-white"></fa-icon>
+        <a  class="text-white fw-medium fs-6">Login</a>
+      </li>
+      } @if(authService.currentUser()){
+        <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer" (click)="logout()">
+          <fa-icon [icon]="logoutIcon" size="lg" class="text-white"></fa-icon>
+          <a  class="text-white fw-medium fs-6">Logout</a>
+        </li>
+      <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
+        <fa-icon [icon]="messagesIcon" size="lg" class="text-white"></fa-icon>
+        <a  class="text-white fw-medium fs-6">Messages</a>
+      </li>
+      <div ngbDropdown class="dropdown d-flex user-select-none pointer">
+        <a ngbDropdownToggle class="dropdown-toggle d-flex align-items-center text-white gap-2">
+          <fa-icon [icon]="userIcon" size="lg" class="text-white"></fa-icon>
+          <a  class="text-white fw-medium fs-6">Hello, {{authService.currentUser()?.username}}</a>
+        </a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Edit</button>
+          <button ngbDropdownItem>Settings</button>
+          <button ngbDropdownItem>Logout</button>
+        </div>
+      </div>
+      
+      }
+
+      <ng-template #content let-offcanvas>
+        <div class="offcanvas-header px-4 bg-light">
+          <h4 class="offcanvas-title">Offcanvas title</h4>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="offcanvas.dismiss('Cross click')"
+          ></button>
+        </div>
+        <div class="offcanvas-body px-4 bg-light">
+          <ul class="navbar-nav d-flex flex-column gap-4 mb-2 mb-md-0">
+            <li class="nav-item gap-2 align-items-center d-flex">
+              <fa-icon
+                [icon]="registerIcon"
+                size="lg"
+                class="text-dark"
+              ></fa-icon>
+              <a  class="text-dark fw-medium fs-6">Register</a>
+            </li>
+            <li class="nav-item gap-2 align-items-center d-flex">
+              <fa-icon [icon]="loginIcon" size="lg" class="text-dark"></fa-icon>
+              <a  class="text-dark fw-medium fs-6">Login</a>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+
+      <button
+        class="btn btn-outline-primary text-white d-block d-md-none"
+        (click)="openSidebar(content)"
+      >
+        <fa-icon [icon]="sideBarIcon" size="xl"></fa-icon>
+      </button>
+    </ul>
+  </div>
+</nav>

@@ -1,26 +1,8 @@
-<h1>{{title}}</h1>
-@if (users) {
-    <ul>
-        @for (user of users; track $index) {
-            <li>{{user.id}} - {{user.userName}}</li>
-         }
-    </ul>
-
-}
-
-
-
-
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
- 
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-      <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    This is a modal.
-  </div>
-</ng-template>
+<app-nav></app-nav>
+<div class="position-relative">
+    <div class="container nav-100vh" style="margin-top: 5em; padding-top: 3em;">
+        <!-- <app-creds></app-creds> -->
+        <!-- <app-home></app-home> -->
+        <app-register></app-register>
+    </div>
+</div>

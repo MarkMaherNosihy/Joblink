@@ -1,0 +1,56 @@
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="circle d-flex justify-content-center align-items-center">
+        <h1 class="text-primary text-center">Joblink</h1>
+      </div>
+    </div>
+    <div class="px-md-5 px-3 pt-md-4 pt-3">
+      <h1 class="text-primary fw-medium fs-3">Welcome back,</h1>
+      <h1 class="text-primary fw-bold">Login</h1>
+      @if(loginErrorExist){
+      <div class="alert alert-danger">Incorrect username or password.</div>
+      }
+    </div>
+
+    <div class="card-body px-md-5 px-3 py-md-4 py-3">
+      <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <div class="d-flex flex-column mb-3 mb-md-4">
+          <label for="username" class="form-label fw-medium text-dark"
+            >Username</label
+          >
+          <input
+            name="username"
+            [(ngModel)]="model.username"
+            type="text"
+            class="form-control bg-white"
+            id="username"
+          />
+        </div>
+        <div class="d-flex flex-column">
+          <label for="password" class="form-label fw-medium text-dark"
+            >Password</label
+          >
+          <input
+            name="password"
+            [(ngModel)]="model.password"
+            type="password"
+            class="form-control bg-white"
+            id="password"
+          />
+          <a href="#" class="text-primary mt-2">Forgot password?</a>
+        </div>
+        <button
+          class="btn btn-primary btn-lg text-white w-100 mt-3 mt-md-4 fw-medium fs-6"
+        >
+          Sign in
+        </button>
+        <div class="d-flex justify-content-center mt-3 mt-md-4">
+          <h4 class="create-new-account text-dark">
+            Don't have an account ?<a href=""> Create a new account.</a>
+          </h4>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

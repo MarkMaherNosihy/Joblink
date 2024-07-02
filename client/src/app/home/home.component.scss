@@ -1,0 +1,19 @@
+
+
+.banner-text{
+    font-size: 3.5rem;
+}
+.banner-img{
+    width: 50%;
+}
+
+
+@media (max-width: 992px) {
+    .banner-text{
+        font-size: 2rem
+    }
+
+    .banner-img{
+        width: 50%;
+    }
+}

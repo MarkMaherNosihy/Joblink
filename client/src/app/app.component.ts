@@ -1,40 +1,30 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { NavComponent } from './nav/nav.component';
+import { CredsComponent } from './creds/creds.component';
+import { AuthService } from './services/auth.service';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ModalModule],
+  imports: [RouterOutlet, NavComponent, CredsComponent, HomeComponent, RegisterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers:[BsModalService]
 })
 export class AppComponent implements OnInit {
 
-  title:string = 'client';
-  users: any;
-  modalRef!: BsModalRef;
-  constructor(private httpClient: HttpClient, private modalService: BsModalService){}
-  
-  ngOnInit(): void {
-    this.httpClient.get('https://localhost:5000/api/users').subscribe({
-      next: (res)=> {
-        console.log(res);
-        this.users = res;
-      },
-      error: (err:any)=>{
-        console.log(err);
-      },
-      complete: ()=>{
-        console.log("Done!");
-      }
-    });
-  }
+  authService = inject(AuthService);
 
-  openModal(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(template);
+  ngOnInit(): void {
+    const userString = localStorage.getItem('user');
+
+    if(!userString) return;
+    
+    const user = JSON.parse(userString);
+
+    this.authService.currentUser.set(user);
   }
 
 }
