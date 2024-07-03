@@ -1,17 +1,17 @@
 <nav class="navbar fixed-top navbar-expand-md bg-primary">
   <div class="container">
     <div class="align-items-center d-flex gap-4">
-      <a class="navbar-brand text-white fs-4 fw-bold" href="#">Joblink</a>
-      <a class="text-white fs-6 fw-medium"> Browse jobs</a>
+      <a class="navbar-brand text-white fs-4 fw-bold" routerLink="/">Joblink</a>
+      <a class="text-white fs-6 fw-medium" routerLink="/jobs"> Browse jobs</a>
     </div>
 
     <ul class="navbar-nav d-flex gap-4 mb-2 mb-md-0">
       @if (!authService.currentUser()) {
-      <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
+      <li  routerLink="/register" class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
         <fa-icon [icon]="registerIcon" size="lg" class="text-white"></fa-icon>
-        <a  class="text-white fw-medium fs-6">Register</a>
+        <a   class="text-white fw-medium fs-6">Register</a>
       </li>
-      <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
+      <li routerLink="/login" class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
         <fa-icon [icon]="loginIcon" size="lg" class="text-white"></fa-icon>
         <a  class="text-white fw-medium fs-6">Login</a>
       </li>
@@ -20,14 +20,14 @@
           <fa-icon [icon]="logoutIcon" size="lg" class="text-white"></fa-icon>
           <a  class="text-white fw-medium fs-6">Logout</a>
         </li>
-      <li class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
+      <li routerLink="/messages" class="nav-item gap-2 align-items-center d-none d-md-flex user-select-none pointer">
         <fa-icon [icon]="messagesIcon" size="lg" class="text-white"></fa-icon>
         <a  class="text-white fw-medium fs-6">Messages</a>
       </li>
-      <div ngbDropdown class="dropdown d-flex user-select-none pointer">
+      <div ngbDropdown class="dropdown d-flex user-select-none pointer d-none d-md-flex">
         <a ngbDropdownToggle class="dropdown-toggle d-flex align-items-center text-white gap-2">
           <fa-icon [icon]="userIcon" size="lg" class="text-white"></fa-icon>
-          <a  class="text-white fw-medium fs-6">Hello, {{authService.currentUser()?.username}}</a>
+          <a  class="text-white fw-medium fs-6">Hello, {{authService.currentUser()?.username | titlecase}}</a>
         </a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem>Edit</button>
@@ -56,11 +56,11 @@
                 size="lg"
                 class="text-dark"
               ></fa-icon>
-              <a  class="text-dark fw-medium fs-6">Register</a>
+              <a routerLink="register"  class="text-dark fw-medium fs-6">Register</a>
             </li>
             <li class="nav-item gap-2 align-items-center d-flex">
               <fa-icon [icon]="loginIcon" size="lg" class="text-dark"></fa-icon>
-              <a  class="text-dark fw-medium fs-6">Login</a>
+              <a  routerLink="login" class="text-dark fw-medium fs-6">Login</a>
             </li>
           </ul>
         </div>

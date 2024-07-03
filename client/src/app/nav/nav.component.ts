@@ -11,15 +11,18 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 import { AuthService } from '../services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, NgbDropdownModule],
+  imports: [FontAwesomeModule, CommonModule, NgbDropdownModule, RouterModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
 export class NavComponent implements OnInit {
   authService = inject(AuthService);
+  router = inject(Router);
+
   private offCanvasService = inject(NgbOffcanvas);
 
   loginIcon = faRightToBracket;
@@ -44,5 +47,6 @@ export class NavComponent implements OnInit {
   }
   logout(){
     this.authService.logout();
+    this.router.navigateByUrl('/home');
   }
 }
