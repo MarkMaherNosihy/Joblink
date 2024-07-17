@@ -2,6 +2,17 @@
 
 public class UserDto
 {
-    public required string token { get; set; }
-    public required string Username { get; set; }
+    public string? UserName { get; set; }
+    public int id { get; set; }
+
+    public string? Bio { get; set; }
+
+    public string? City { get; set; }
+
+    public string? Country{ get; set; }
+    public DateTime LastActive { get; set; } = DateTime.UtcNow;
+
+    public DateTime AccountCreated { get; set; } = DateTime.UtcNow;
+
+    public string? ProfilePictureURL { get; set; }
 }

@@ -23,32 +23,34 @@ public class AccountsController : BaseApiController
 
 
     [HttpPost("register")]
-    public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+    public async Task<ActionResult<LoginResponseDto>> Register(RegisterDto registerDto)
     {
 
         if(await UserAlreadyExists(registerDto.Username)){
             return BadRequest("Username already exists.");
         }
-        using var hmac = new HMACSHA512();
 
-        var user = new User{
-            UserName = registerDto.Username.ToLower(),
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-            PasswordSalt = hmac.Key
-        };
+        return Ok();
+        // using var hmac = new HMACSHA512();
 
-        _context.Users.Add(user);
+        // var user = new User{
+        //     UserName = registerDto.Username.ToLower(),
+        //     PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+        //     PasswordSalt = hmac.Key
+        // };
 
-        await _context.SaveChangesAsync();
+        // _context.Users.Add(user);
 
-        return new UserDto{
-            Username = user.UserName,
-            token = _tokenService.CreateToken(user)
-        };
+        // await _context.SaveChangesAsync();
+
+        // return new UserDto{
+        //     Username = user.UserName,
+        //     token = _tokenService.CreateToken(user)
+        // };
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<UserDto>> Login(LoginDto loginDto){
+    public async Task<ActionResult<LoginResponseDto>> Login(LoginDto loginDto){
 
         var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
@@ -66,7 +68,7 @@ public class AccountsController : BaseApiController
             }
         }
 
-        return new UserDto{
+        return new LoginResponseDto{
             Username = user.UserName,
             token = _tokenService.CreateToken(user)
         };

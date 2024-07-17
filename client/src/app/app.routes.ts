@@ -6,6 +6,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { RegisterComponent } from './register/register.component';
 import { CredsComponent } from './creds/creds.component';
 import { authGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ServerNotFoundComponent } from './server-not-found/server-not-found.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -18,7 +20,7 @@ export const routes: Routes = [
     ] },
     {path: 'login', component: CredsComponent},
     {path: 'register', component: RegisterComponent},
-
-    {path: '**', component: HomeComponent, pathMatch: 'full'}
+    {path: 'server-error', component: ServerNotFoundComponent},
+    {path: '**', component: NotFoundComponent, pathMatch: 'full'}
 
 ];

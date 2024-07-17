@@ -1,5 +1,7 @@
 ﻿using API.Data;
+using API.Data.Repositories;
 using API.Interface;
+using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions;
@@ -16,7 +18,10 @@ public static class AppServiceExtensions
         services.AddControllers(); // Add this line to add controller services
         services.AddCors();
         services.AddScoped<ITokenService, TokenService>();
-        
+        services.AddScoped<IUserRepository, UserRepository>(); 
+        services.AddScoped<IEmployeeRepository, EmployeeRepository>(); 
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         return services;
     }
 }

@@ -44,12 +44,20 @@
             </div>
           </div>
         </div>
+        @if(validationErrors){
+          <ul class="text-danger mb-2">
+            @for (error of validationErrors; track $index) {
+              <li class="fs-6">{{error}}</li>
+            }
+          </ul>
+        }
 
         <button
-          class="btn btn-primary btn-lg text-white w-100 mt-3 mt-md-4 fw-medium fs-6"
+          class="btn btn-primary btn-lg text-white w-100 mt-2 mt-md-2 fw-medium fs-6"
         >
           Sign Up
         </button>
+
         <div class="d-flex justify-content-center mt-3 mt-md-4">
           <h4 class="create-new-account text-dark">
             Already have an account ?<a href=""> Sign in.</a>

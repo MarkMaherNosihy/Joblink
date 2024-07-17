@@ -2,7 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import './bootstrap.css';
-
+@import './theme.scss';
 
 
 .nav-100vh{
@@ -16,4 +16,19 @@ a{
 
 .pointer{
     cursor: pointer;
+}
+
+.danger{
+    background-color: $danger;
+    color: $white;
+}
+
+.success{
+    background-color: $success;
+    color: $white;
+}
+
+.neutral{
+    background-color: $white;
+    color: $dark;
 }

@@ -12,11 +12,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent {
   model: any = {};
+  validationErrors: string[] = [];
   private authService = inject(AuthService);
 
   register(){
     this.authService.register(this.model).subscribe((response)=>{
       console.log(response);
+    }, (err)=>{
+      this.validationErrors = err;
+      console.log(err);
     });
   }
 }

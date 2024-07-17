@@ -1,27 +1,39 @@
-﻿using API.Data;
+﻿using System.Reflection.Metadata.Ecma335;
+using API.Data;
+using API.Data.Repositories;
 using API.Entities;
+using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
-
-public class UsersController : BaseApiController
+[Authorize]
+public class UsersController (IUserRepository userRepo, IEmployeeRepository empRepo, IMapper mapper) : BaseApiController
 {
     private readonly DataContext _context;
 
-    public UsersController(DataContext context)
-    {
-        _context = context;
-    }
-    [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetUsers(){
-        return await _context.Users.ToListAsync();
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(){
+        var users =  await userRepo.GetUsersAsync();
+        var mappedUsers = mapper.Map<IEnumerable<UserDto>>(users);
+        return Ok(mappedUsers);
     }
-    [Authorize]
-    [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(int id){
-        return await _context.Users.FindAsync(id);
+    [HttpGet("{username}")]
+    public async Task<ActionResult<User>> GetUser(string username){
+        var user = await userRepo.GetUserByUserNameAsync(username);
+
+        if(user == null) return NotFound();
+
+        return Ok(user);
     }
+    [HttpGet("employees")]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployees(){
+            var users = await empRepo.GetEmployeesAsync();
+
+            var mappedUsers = mapper.Map<IEnumerable<EmployeeDto>>(users);
+
+            return Ok(mappedUsers);
+        }
 }

@@ -1,0 +1,11 @@
+@for (toast of toastService.toasts; track toast) {
+<ngb-toast
+  [header]="toast.header"
+  [delay]="toast.delay || 5000 "
+  (hidden)="toastService.remove(toast)"
+  [ngClass]="{'danger': toast.type == 'danger', 'success': toast.type == 'success', 'neutral': toast.type == 'neutral'}"
+  >
+  {{ toast.body }}
+  </ngb-toast
+>
+}

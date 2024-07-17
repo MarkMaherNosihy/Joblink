@@ -1,0 +1,27 @@
+[
+    '{{repeat(5)}}',
+    {
+      UserName: '{{firstName("male")}}',
+      Gender: 'male',
+      DateOfBirth: '{{date(new Date(1950,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
+      AccountCreated: '{{date(new Date(2019, 0, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
+      LastActive: '{{date(new Date(2020, 4, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
+      Bio: '{{lorem(1, "paragraphs")}}',
+      City: '{{city()}}',
+      Country: '{{country()}}',
+      ProfilePictureURL: function(num) {
+            return 'https://randomuser.me/api/portraits/men/' + num.integer(1,99) + '.jpg';
+          },
+      FirstName: '{{firstName("female")}}',
+      LastName: '{{firstName("male")}}',
+      Experience: [
+        {
+          Title: '{{lorem(1, "word")}}',
+          Description: '{{lorem(1, "paragraph")}}',
+          StartDate: '{{date(new Date(2019, 0, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
+          EndDate: '{{date(new Date(2019, 0, 1), new Date(2020,5,30), "YYYY-MM-dd")}}',
+          CompanyName: '{{company()}}'
+        }
+      ]
+    }
+  ]
