@@ -36,4 +36,19 @@ public class UsersController (IUserRepository userRepo, IEmployeeRepository empR
 
             return Ok(mappedUsers);
         }
+        [HttpGet("employees/{id:int}")]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeById(int id){
+            var user = await empRepo.GetEmployeeById(id);
+            if(user == null) return NotFound();
+            var mappedUser = mapper.Map<EmployeeDto>(user);
+            return Ok(mappedUser);
+        }
+
+        [HttpGet("employees/{username}")]
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeeByUsername(string username){
+            var user = await empRepo.GetEmployeeByUsername(username);
+            if(user == null) return NotFound();
+            var mappedUser = mapper.Map<EmployeeDto>(user);
+            return Ok(mappedUser);
+        }
 }

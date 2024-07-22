@@ -1,0 +1,91 @@
+
+    @if(employeeInfo){
+        <div class="pt-3">
+
+
+       <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-image d-flex justify-content-center">
+                     <img [src]="employeeInfo.profilePictureURL" class="profile-img card-img-top w-full" alt="">
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-secondary text-white fw-medium w-100">Message</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-info text-white fw-medium w-100">Connect</button>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-md-evenly md:flex-row flex-column mt-4">
+                        <div class="d-flex gap-2 align-items-center">
+                            <fa-icon [icon]="websiteIcon"></fa-icon>
+                             <a href="#">Website</a>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <fa-icon [icon]="githubIcon"></fa-icon>
+                            <a href="#">Github</a>
+
+                        </div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <fa-icon [icon]="linkedinIcon"></fa-icon>
+                            <a href="#">LinkedIn</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mt-md-0 mt-3">
+            <div class="d-flex align-items-center gap-4 justify-content-md-start justify-content-center">
+                <h2 class="">{{employeeInfo.firstName}} {{employeeInfo.lastName}}</h2>
+                <div class="d-flex justify-content-center align-items-center  gap-2">
+                    <fa-icon [icon]="locationIcon" [size]="'sm'" style="color: #a1a1a1">
+                    </fa-icon>
+                    <p class="m-0" style="color: #a1a1a1">{{employeeInfo.country}}, {{employeeInfo.city}}</p>
+                </div>
+            </div>
+            <p>{{employeeInfo.bio}}</p>
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <button ngbNavLink>Experience</button>
+                    <ng-template ngbNavContent>
+                        @for (experience of experiences; track $index) {
+                            <div class="card mb-4" >
+                                <div class="card-body">
+                                    <h5 class="card-title">{{experience.companyName}}</h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">{{experience.title}}</h6>
+                                    <p class="card-text">{{experience.description}}</p>
+                                    <div class="d-flex gap-3">
+                                        <p> <span class="fw-bold">Start date:</span> {{experience.startDate}}</p>
+                                        <p> <span class="fw-bold">End date:</span> {{experience.endDate}}</p>
+            
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <button ngbNavLink>Projects</button>
+                    <ng-template ngbNavContent>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sapiente quisquam ratione. Velit deserunt aspernatur maxime architecto modi nemo asperiores atque adipisci porro eos, repellat magnam obcaecati suscipit maiores sequi?</p>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                    <button ngbNavLink>Awards</button>
+                    <ng-template ngbNavContent>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sapiente quisquam ratione. Velit deserunt aspernatur maxime architecto modi nemo asperiores atque adipisci porro eos, repellat magnam obcaecati suscipit maiores sequi?</p>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+        </div>
+       </div>
+    </div>
+    }
+
+
+

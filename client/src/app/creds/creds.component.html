@@ -9,7 +9,7 @@
       <h1 class="text-primary fw-medium fs-3">Welcome back,</h1>
       <h1 class="text-primary fw-bold">Login</h1>
       @if(loginErrorExist){
-      <div class="alert alert-danger">Incorrect username or password.</div>
+      <div class="alert alert-danger">{{loginError.error}}</div>
       }
     </div>
 

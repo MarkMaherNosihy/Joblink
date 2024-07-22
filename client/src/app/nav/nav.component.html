@@ -30,8 +30,8 @@
           <a  class="text-white fw-medium fs-6">Hello, {{authService.currentUser()?.username | titlecase}}</a>
         </a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>Edit</button>
-          <button ngbDropdownItem>Settings</button>
+
+          <button ngbDropdownItem routerLink="profile">Profile</button>
           <button ngbDropdownItem>Logout</button>
         </div>
       </div>

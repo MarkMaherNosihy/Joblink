@@ -16,7 +16,7 @@ export class CredsComponent {
   authService = inject(AuthService);
   router = inject(Router);
   loginErrorExist: boolean = false;
-
+  loginError: any;
   login(){
     this.authService.login(this.model).subscribe({
       next: (res)=>{
@@ -26,6 +26,7 @@ export class CredsComponent {
         this.router.navigateByUrl('/jobs');
       },
       error: (err)=>{
+        this.loginError = err;
         console.log(err);
         this.loginErrorExist = true;
       }
