@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240716052306_AdjustCompanyFoundedType")]
-    partial class AdjustCompanyFoundedType
+    [Migration("20240813200939_AdjustedUser")]
+    partial class AdjustedUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,6 +84,9 @@ namespace API.Migrations
                         .HasColumnType("BLOB");
 
                     b.Property<string>("ProfilePictureURL")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PublicId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")

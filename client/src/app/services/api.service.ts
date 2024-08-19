@@ -19,4 +19,7 @@ export class ApiService {
   post(endpoint: string, queryString: string = "", body: any){
     return this.httpClient.post(this.baseUrl+endpoint+queryString, body);
   }
+  update<T>(endpoint: string, queryString: string = "", body: any){
+    return this.httpClient.put<T>(this.baseUrl + endpoint + queryString, body);
+  }
 }

@@ -83,6 +83,9 @@ namespace API.Migrations
                     b.Property<string>("ProfilePictureURL")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PublicId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");
 

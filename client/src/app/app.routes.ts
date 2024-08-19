@@ -9,6 +9,7 @@ import { authGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ServerNotFoundComponent } from './server-not-found/server-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditExperienceModalComponent } from './profile/edit-experience-modal/edit-experience-modal.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -17,7 +18,9 @@ export const routes: Routes = [
         {path: 'jobs', component: JobsListComponent,},
         {path: 'jobs/:id', component: JobDetailComponent, },
         {path: 'messages', component: MessagesComponent, },
-        {path: 'profile', component: ProfileComponent}
+        {path: 'profile', component: ProfileComponent, children: [
+            {path: 'edit/experience', component: EditExperienceModalComponent}
+        ]}
 
     ] },
     {path: 'login', component: CredsComponent},

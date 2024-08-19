@@ -15,4 +15,5 @@ public class UserDto
     public DateTime AccountCreated { get; set; } = DateTime.UtcNow;
 
     public string? ProfilePictureURL { get; set; }
+    public string? PublicId { get; set; }
 }

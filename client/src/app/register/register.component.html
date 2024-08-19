@@ -5,51 +5,121 @@
     </div>
 
     <div class="card-body px-md-5 px-3 py-md-4 py-3">
-      <form autocomplete="off" (ngSubmit)="register()" #registerForm="ngForm">
+      <form
+        autocomplete="off"
+        (ngSubmit)="register()"
+        [formGroup]="registerForm"
+      >
         <div class="col-md w-full">
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Username"
-              name="username"
-              [(ngModel)]="model.username"
-            />
-            <label for="" class="fw-medium">Username</label>
-          </div>
+          <app-text-input
+            [formControl]="$any(registerForm.controls['username'])"
+            [label]="'Username'"
+          ></app-text-input>
         </div>
-
         <div class="row">
           <div class="col-md w-full">
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                name="password"
-                [(ngModel)]="model.password"
-              />
-              <label for="password" class="fw-medium">Password</label>
-            </div>
+            <app-text-input
+              [formControl]="$any(registerForm.controls['FirstName'])"
+              [label]="'First Name'"
+              [type]="'text'"
+            ></app-text-input>
           </div>
           <div class="col-md w-full">
-            <div class="form-floating mb-3">
+            <app-text-input
+              [formControl]="$any(registerForm.controls['LastName'])"
+              [label]="'Last Name'"
+              [type]="'text'"
+            ></app-text-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md w-full">
+            <app-text-input
+              [formControl]="$any(registerForm.controls['password'])"
+              [label]="'Password'"
+              [type]="'password'"
+            ></app-text-input>
+          </div>
+          <div class="col-md w-full">
+            <app-text-input
+              [formControl]="$any(registerForm.controls['confirmPassword'])"
+              [label]="'Confirm Password'"
+              [type]="'password'"
+            ></app-text-input>
+          </div>
+        </div>
+        <div class="mb-2">
+          <h4 class="fs-6">Gender</h4>
+          <div class="d-flex gap-5">
+            <div class="form-check">
               <input
-                type="password"
-                class="form-control"
-                placeholder="Confirm Password"
-                name="confirm-password"
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="male"
+                value="male"
+                formControlName="gender"
               />
-              <label for="" class="fw-medium">Confirm Password</label>
+              <label class="form-check-label" for="male"> Male </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="female"
+                value="female"
+                formControlName="gender"
+              />
+              <label class="form-check-label" for="female"> Female </label>
             </div>
           </div>
         </div>
+        <app-text-input
+          [formControl]="$any(registerForm.controls['Country'])"
+          [label]="'Country'"
+          [type]="'text'"
+        ></app-text-input>
+        <app-text-input
+          [formControl]="$any(registerForm.controls['City'])"
+          [label]="'City'"
+          [type]="'text'"
+        ></app-text-input>
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="form-floating">
+              <input
+                class="form-control"
+                [class.is-invalid]="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched "
+                ngbDatepicker
+                #d="ngbDatepicker"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dateOfBirth"
+                formControlName="dateOfBirth"
+              />
+              <label for="dateOfBirth" class="fw-medium">Date Of Birth</label>
+            </div>
+            <span class="input-group-text">
+              <button
+                class="btn btn-outline-secondary"
+                (click)="d.toggle()"
+                type="button"
+              >
+                <fa-icon [icon]="calendarIcon"></fa-icon></button
+            ></span>
+            
+          </div>
+          @if(registerForm.get('dateOfBirth')?.hasError('required') && registerForm.get('dateOfBirth')?.touched){
+            <div class="text-danger" style="font-size: 0.875rem">Date of birth is required.</div>
+          }
+        </div>
         @if(validationErrors){
-          <ul class="text-danger mb-2">
-            @for (error of validationErrors; track $index) {
-              <li class="fs-6">{{error}}</li>
-            }
-          </ul>
+        <ul class="text-danger mb-2">
+          @for (error of validationErrors; track $index) {
+          <li class="fs-6">{{ error }}</li>
+          }
+        </ul>
         }
 
         <button

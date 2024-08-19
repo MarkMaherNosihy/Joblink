@@ -1,0 +1,29 @@
+
+@import "../../../theme.scss";
+
+.file-upload-container{
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.file-upload-container input[type="file"] {
+    display: none;
+}
+
+label{
+    display: inline-block;
+    font-size: 12px;
+    min-width: 100px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    text-align: center;
+}
+.wrapper{
+    border: 1px dashed white;
+    border-radius: 6px;
+    padding: 0.2em;
+    background-color: rgba(36, 25, 242, 0.3);
+}

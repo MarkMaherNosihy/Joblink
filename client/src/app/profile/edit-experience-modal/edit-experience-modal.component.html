@@ -1,0 +1,55 @@
+
+<form #editForm="ngForm" autocomplete="off" (ngSubmit)="SaveChanges()">
+<ng-template #content let-modal  >
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Edit Experience</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="closeModal(modal)"></button>
+	</div>
+	<div class="modal-body">
+            <div>
+                <label for="" class="form-label fw-medium">Company name</label>
+                <input type="text" [(ngModel)]="CurrentExperience.companyName" name="companyName" class="form-control">
+            </div>
+            <div>
+                <label for="" class="form-label fw-medium mt-2">Job title</label>
+                <input type="text" [(ngModel)]="CurrentExperience.title" name="title" class="form-control">
+            </div>
+            <div>
+                <label for="" class="form-label mt-2 fw-medium">Job description</label>
+                <textarea [(ngModel)]="CurrentExperience.description" class="form-control" name="description" style="height: 150px;"></textarea>
+            </div>
+            <label for="" class="form-label mt-2 fw-medium">Start Date</label>
+            <div class="input-group">
+
+                <input
+                    id="startDate"
+                    class="form-control"
+                    name="ngStartDate"
+                    ngbDatepicker
+                    #startDp="ngbDatepicker"
+
+                    [(ngModel)]="ngbStartDate"
+                />
+                <button class="btn btn-outline-secondary" (click)="startDp.toggle()" type="button"> <fa-icon [icon]="calendarIcon"></fa-icon></button>
+
+            </div>
+            <label for="" class="form-label mt-2 fw-medium">End Date</label>
+            <div class="input-group">
+
+                <input
+                    id="endDate"
+                    class="form-control"
+                    placeholder="yyyy-mm-dd"
+                    name="endDate"
+                    ngbDatepicker
+                    #endDp="ngbDatepicker"
+                    [(ngModel)]="ngbEndDate"
+                />
+                <button class="btn btn-outline-secondary" (click)="endDp.toggle()" type="button"> <fa-icon [icon]="calendarIcon"></fa-icon></button>
+            </div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline-secondary" (click)="SaveChanges()">Save changes</button>
+	</div>
+</ng-template>
+</form>

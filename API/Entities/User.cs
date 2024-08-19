@@ -19,5 +19,7 @@ public class User
 
     public DateTime AccountCreated { get; set; } = DateTime.UtcNow;
 
-    public string ProfilePictureURL { get; set; }
+    public string ProfilePictureURL { get; set; } = "https://res.cloudinary.com/djut9e3h5/image/upload/v1724014147/joblink-net8/starter_zs5mev.png";
+    public string PublicId { get; set; }
+
 }

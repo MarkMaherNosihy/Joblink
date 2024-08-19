@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './services/auth.service';
 import { ToastsComponent } from './shared/toasts/toasts.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavComponent, ToastsComponent],
+  imports: [RouterOutlet, NavComponent, ToastsComponent, SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

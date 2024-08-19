@@ -5,6 +5,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Interface;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,45 +16,45 @@ public class AccountsController : BaseApiController
     private readonly DataContext _context;
     private readonly ITokenService _tokenService;
 
-    public AccountsController(DataContext context, ITokenService tokenService)
+    private readonly IMapper _mapper;
+    public AccountsController(DataContext context, ITokenService tokenService, IMapper mapper)
     {
         _context = context;
         _tokenService = tokenService;
+        _mapper = mapper;
     }
 
 
     [HttpPost("register")]
-    public async Task<ActionResult<LoginResponseDto>> Register(RegisterDto registerDto)
+    public async Task<ActionResult<RegisterResponseDto>> Register(RegisterDto registerDto)
     {
 
         if(await UserAlreadyExists(registerDto.Username)){
             return BadRequest("Username already exists.");
         }
+        using var hmac = new HMACSHA512();
 
-        return Ok();
-        // using var hmac = new HMACSHA512();
 
-        // var user = new User{
-        //     UserName = registerDto.Username.ToLower(),
-        //     PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-        //     PasswordSalt = hmac.Key
-        // };
+        var user = _mapper.Map<Employee>(registerDto);
 
-        // _context.Users.Add(user);
+        user.UserName = registerDto.Username.ToLower();
+        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+        user.PasswordSalt = hmac.Key;
 
-        // await _context.SaveChangesAsync();
+        _context.Users.Add(user);
 
-        // return new UserDto{
-        //     Username = user.UserName,
-        //     token = _tokenService.CreateToken(user)
-        // };
+        await _context.SaveChangesAsync();
+
+        return new RegisterResponseDto{
+            Token = _tokenService.CreateToken(user),
+            Username = user.UserName
+        };
     }
 
     [HttpPost("login")]
     public async Task<ActionResult<LoginResponseDto>> Login(LoginDto loginDto){
 
         var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
-
         if(user == null){
             return Unauthorized("Invalid Username");
         }
