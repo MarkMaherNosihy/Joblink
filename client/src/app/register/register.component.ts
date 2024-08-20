@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('dateOfBirth')?.setValue(dob);
     this.authService.register(this.registerForm.value).subscribe({
       next: _=>this.router.navigateByUrl('/login'),
-      error: (err)=> this.toast.show('Sign up failed', err, 'danger')
+      error: (err)=> this.validationErrors = err
     })
 
 

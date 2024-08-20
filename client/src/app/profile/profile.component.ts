@@ -11,11 +11,12 @@ import { faFacebook, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-i
 import { EditExperienceModalComponent } from "./edit-experience-modal/edit-experience-modal.component";
 import { Router, RouterModule } from '@angular/router';
 import { ChangeImageComponent } from '../shared/change-image/change-image.component';
+import { ExperiencesComponent } from "./experiences/experiences.component";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, NgbNavModule, EditExperienceModalComponent, RouterModule, ChangeImageComponent],
+  imports: [CommonModule, FontAwesomeModule, NgbNavModule, EditExperienceModalComponent, RouterModule, ChangeImageComponent, ExperiencesComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -30,7 +31,6 @@ export class ProfileComponent implements OnInit {
   websiteIcon = faGlobe;
   linkedinIcon = faLinkedin;
   githubIcon = faGithub;
-  editIcon = faEdit;
   isImageHovered = false;
   @Input() unsavedChanges?: boolean;
   router = inject(Router);

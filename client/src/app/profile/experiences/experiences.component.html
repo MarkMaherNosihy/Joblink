@@ -1,0 +1,21 @@
+@for (experience of experiences(); track $index) {
+    <div class="card mb-4" >
+        <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between">{{experience.companyName}}
+                                    <button routerLink="edit/experience" class="btn btn-outline-secondary" [state]="experience">
+                                        <fa-icon [icon]="editIcon"></fa-icon>
+                                    </button>
+                                    </h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{experience.title}}</h6>
+            <p class="card-text">{{experience.description}}</p>
+            <div class="d-flex gap-3">
+                <p> <span class="fw-bold">Start date:</span> {{experience.startDate}}</p>
+                <p> <span class="fw-bold">End date:</span> {{experience.endDate}}</p>
+
+            </div>
+        </div>
+    </div>
+}
+@if (experiences()?.length == 0) {
+    <h5 class="text-center my-4">You don't have any experience.</h5>
+}

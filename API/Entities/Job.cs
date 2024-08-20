@@ -12,4 +12,10 @@ public class Job
 
     public required int OpenPositions { get; set; }
 
+    public required string Type { get; set; }
+    public required string Field { get; set; }
+
+    public ICollection<Application> Applications { get; set; }
+
+
 }

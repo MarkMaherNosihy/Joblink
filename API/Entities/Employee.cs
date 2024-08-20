@@ -10,6 +10,7 @@ public class Employee : User
     public required DateOnly DateOfBirth { get; set; }
     public required string Gender { get; set; }
     public string CV_URL { get; set; } = "";
+    public ICollection<Application> Applications { get; set; }
 
     public List<Experience> Experiences { get; set; }
         public int GetAge(){
