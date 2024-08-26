@@ -20,7 +20,7 @@ public static class AppServiceExtensions
         services.AddControllers(); // Add this line to add controller services
         services.AddCors();
         services.AddScoped<ITokenService, TokenService>();
-        services.AddScoped<IUserRepository, UserRepository>(); 
+        // services.AddScoped<IUserRepository, UserRepository>(); 
         services.AddScoped<IEmployeeRepository, EmployeeRepository>(); 
         services.AddScoped<IPhotoService, PhotoService>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

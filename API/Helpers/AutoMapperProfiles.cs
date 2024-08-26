@@ -12,12 +12,18 @@ public class AutoMapperProfiles : Profile
 
         CreateMap<Employee, EmployeeDto>()
         .IncludeBase<User, UserDto>();
-        
+
         CreateMap<Experience, ExperienceDto>();
+        
         CreateMap<ExperienceDto, Experience>();
+        
         CreateMap<RegisterDto, User>();
+        
         CreateMap<RegisterDto, Employee>();
+        
         CreateMap<string, DateOnly>().ConvertUsing(s=> DateOnly.Parse(s));
+        
+        CreateMap<UpdateEmployeeDto, User>();
 
 
     }

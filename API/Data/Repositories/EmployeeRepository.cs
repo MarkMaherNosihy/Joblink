@@ -1,25 +1,19 @@
 ﻿using API.Data;
+using API.Data.Repositories;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace API;
 
-public class EmployeeRepository(DataContext context) : IEmployeeRepository
+public class EmployeeRepository: UserRepository<Employee> , IEmployeeRepository
 {
-    public async Task<Employee> GetEmployeeById(int id)
-    {
-        return await context.Users.OfType<Employee>().Where(x=> x.id == id).Include(x=>x.Experiences).SingleOrDefaultAsync();
-    }
+  public EmployeeRepository(DataContext context) : base(context)
+  {
+  }
 
-    public async Task<Employee> GetEmployeeByUsername(string username)
+  public override async Task<IEnumerable<Employee>> GetAllAsync()
     {
-        return await context.Users.OfType<Employee>().Where(x=> x.UserName == username).Include(x=>x.Experiences).SingleOrDefaultAsync();
-    }
-
-    public async Task<IEnumerable<Employee>> GetEmployeesAsync()
-    {
-        return await context.Users.OfType<Employee>().Include(x=> x.Experiences).ToListAsync();
-
+        return await _context.Users.OfType<Employee>().Include(x=> x.Experiences).ToListAsync();
     }
 }   

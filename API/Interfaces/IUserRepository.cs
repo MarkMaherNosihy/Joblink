@@ -2,15 +2,7 @@
 
 namespace API.Interfaces;
 
-public interface IUserRepository
+public interface IUserRepository<T> : IBaseRepository<T> where T : User
 {  
-    void Update(User user);
-
-    Task<bool> SaveAllAsync();
-
-    Task<IEnumerable<User>> GetUsersAsync();
-
-    Task<User?> GetUserByIdAsync(int userId);
-
-    Task<User?> GetUserByUserNameAsync(string userName);
+   public Task<T> GetUserByUsernameAsync(string username);
 }
