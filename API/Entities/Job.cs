@@ -1,4 +1,7 @@
-﻿namespace API.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using API.Interfaces;
+
+namespace API.Entities;
 
 public class Job
 {
@@ -13,7 +16,9 @@ public class Job
     public required int OpenPositions { get; set; }
 
     public required string Type { get; set; }
-    public required string Field { get; set; }
+    [Required]
+    [EnumDataType(typeof(Field))]
+    public required Field Field { get; set; }
 
     public ICollection<Application> Applications { get; set; }
 

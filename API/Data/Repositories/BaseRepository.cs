@@ -7,7 +7,7 @@ namespace API.Data.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         protected readonly DataContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public BaseRepository(DataContext context)
         {
