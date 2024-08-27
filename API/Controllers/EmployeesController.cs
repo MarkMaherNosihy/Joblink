@@ -11,7 +11,7 @@ namespace API.Controllers
     public class EmployeesController(IEmployeeRepository employeeRepository, IMapper mapper, IPhotoService photoService) : BaseApiController
     {
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetAllEmployees()
         {
             var employees = await employeeRepository.GetAllAsync();
             var mappedEmployees = mapper.Map<IEnumerable<EmployeeDto>>(employees);
