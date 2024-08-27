@@ -1,5 +1,6 @@
 ﻿using API.Entities;
 using API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data.Repositories;
 
@@ -9,8 +10,8 @@ public class UserRepository<T>: BaseRepository<T>, IUserRepository<T> where T : 
     {
     }
 
-    public Task<T> GetUserByUsernameAsync(string username)
+    public async Task<T> GetUserByUsernameAsync(string username)
     {
-        throw new NotImplementedException();
+        return await _dbSet.FirstOrDefaultAsync((x)=>x.UserName == username);
     }
 }
