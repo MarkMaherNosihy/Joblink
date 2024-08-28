@@ -23,7 +23,8 @@ public class AutoMapperProfiles : Profile
         
         CreateMap<string, DateOnly>().ConvertUsing(s=> DateOnly.Parse(s));
         
-        CreateMap<UpdateEmployeeDto, User>();
+        CreateMap<UpdateEmployeeDto, Employee>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
 
     }
